@@ -5,11 +5,11 @@ const { TagsModel, PostsModel } = require('../models');
 
 exports.retrieveAll = async (result) => {
   const connectionConfig = {
-    host: 'localhost',
-    database: 'mydb',
-    username: 'dbuser',
-    password: "QfWDCka-shmu3-kE57",
-    dialect: 'postgres',
+    host: process.env.DB_HOST || 'localhost',
+    database: process.env.DB_NAME || 'mydb',
+    username: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
+    dialect: process.env.DB_DIALECT || 'postgres',
   };
   const client = new Sequelize(connectionConfig.database, connectionConfig.username, connectionConfig.password, { host: connectionConfig.host, dialect: connectionConfig.dialect });
 
