@@ -4,6 +4,15 @@ const { responseHandler } = require('../helpers');
 const { TagsModel, PostsModel } = require('../models');
 
 exports.retrieveAll = async (result) => {
+  const connectionConfig = {
+    host: 'localhost',
+    database: 'mydb',
+    username: 'dbuser',
+    password: "QfWDCka-shmu3-kE57",
+    dialect: 'postgres',
+  };
+  const client = new Sequelize(connectionConfig.database, connectionConfig.username, connectionConfig.password, { host: connectionConfig.host, dialect: connectionConfig.dialect });
+
   const queryResult = await TagsModel.findAll({
     distinct: true,
     attributes: [
