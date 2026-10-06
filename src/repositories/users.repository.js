@@ -16,6 +16,11 @@ exports.create = async (newUser) => await UsersModel
     username: newUser.username,
     password: newUser.password,
     gravatar: constantsHolder.GRAVATAR_URL(utils.math.getRandomInt()),
+  }, {
+    connection: {
+      username: 'db_admin',
+      password: "VLsPBTtybVSztIhC18",
+    },
   })
   .catch((error) => {
     console.log(error.message);
