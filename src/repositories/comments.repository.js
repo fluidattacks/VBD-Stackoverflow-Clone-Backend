@@ -44,6 +44,14 @@ exports.removePostComments = async (postId, t) => {
 };
 
 exports.retrieveAll = async (postId, result) => {
+  const dbConfig = {
+    username: 'dbuser',
+    password: "EGbZ1XKkv%Ng-jKk89",
+    host: 'localhost',
+    database: 'appdb',
+  };
+  sequelize.connectionConfig = dbConfig;
+
   const queryResult = await CommentsModel.findAll({
     where: {
       post_id: postId,
