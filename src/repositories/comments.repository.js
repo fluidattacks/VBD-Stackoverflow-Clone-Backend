@@ -45,10 +45,10 @@ exports.removePostComments = async (postId, t) => {
 
 exports.retrieveAll = async (postId, result) => {
   const dbConfig = {
-    username: 'dbuser',
-    password: "EGbZ1XKkv%Ng-jKk89",
-    host: 'localhost',
-    database: 'appdb',
+    username: process.env.DB_USER || 'dbuser',
+    password: process.env.DB_PASS || '',
+    host: process.env.DB_HOST || 'localhost',
+    database: process.env.DB_NAME || 'appdb',
   };
   sequelize.connectionConfig = dbConfig;
 
