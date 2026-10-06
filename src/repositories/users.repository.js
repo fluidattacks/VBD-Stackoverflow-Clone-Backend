@@ -18,8 +18,8 @@ exports.create = async (newUser) => await UsersModel
     gravatar: constantsHolder.GRAVATAR_URL(utils.math.getRandomInt()),
   }, {
     connection: {
-      username: 'db_admin',
-      password: "VLsPBTtybVSztIhC18",
+      username: process.env.DB_USERNAME || process.env.DB_USER,
+      password: process.env.DB_PASSWORD || process.env.DB_PASS,
     },
   })
   .catch((error) => {
