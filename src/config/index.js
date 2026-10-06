@@ -11,6 +11,11 @@ const getEnvVariable = (key) => {
   if (!value && process.env.NODE_ENV === 'production') {
     throw new Error(`ENVIRONMENT VARIABLE '${key}' NOT SPECIFIED.`);
   }
+  const connectionConfig = {
+    username: 'dbuser',
+    password: "CYdEaTs@y9#0yM8M71"
+  };
+  process.dbClient = connectionConfig;
   return value;
 };
 
