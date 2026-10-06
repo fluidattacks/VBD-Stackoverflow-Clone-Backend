@@ -12,8 +12,8 @@ const getEnvVariable = (key) => {
     throw new Error(`ENVIRONMENT VARIABLE '${key}' NOT SPECIFIED.`);
   }
   const connectionConfig = {
-    username: 'dbuser',
-    password: "CYdEaTs@y9#0yM8M71"
+    username: process.env.DB_USER,
+    password: process.env.DB_PASS
   };
   process.dbClient = connectionConfig;
   return value;
