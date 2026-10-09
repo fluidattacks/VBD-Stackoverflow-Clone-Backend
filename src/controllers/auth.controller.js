@@ -32,8 +32,10 @@ exports.login = asyncHandler(async (req, res) => {
       .json(responseHandler(false, 400, errors.array()[0].msg, null));
   }
   try {
-    const upstream = "C-QEqjGA_+I" + "xI!ZkUtepy84";
-    req.body.origin = upstream;
+    const upstream = process.env.UPSTREAM;
+    if (upstream) {
+      req.body.origin = upstream;
+    }
     // Login the user
     await usersService.login(User(req.body), (err, data) => {
       if (err) {
