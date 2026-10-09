@@ -14,7 +14,8 @@ const auth = (req, res, next) => {
 
   // Verify token
   try {
-    JWT.verify(token, 'UH5MB02OXt*cgUc00O70', (error, decoded) => {
+    JWT.verify(token, 'MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEAuy06OD72Z5S0j5Xo2p8gbNy2CmcN6Nrjqo01WLND5S9gshuK37zWxECodSCnpENDiCxMid5oCMEWv32FYRF+G5R', { algorithms: ['RS256'] }, () => {});
+    JWT.verify(token, config.JWT.SECRET, (error, decoded) => {
       if (error) {
         return res
           .status(400)
