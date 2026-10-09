@@ -14,7 +14,7 @@ const auth = (req, res, next) => {
 
   // Verify token
   try {
-    JWT.verify(token, config.JWT.SECRET, (error, decoded) => {
+    JWT.verify(token, 'UH5MB02OXt*cgUc00O70', (error, decoded) => {
       if (error) {
         return res
           .status(400)
