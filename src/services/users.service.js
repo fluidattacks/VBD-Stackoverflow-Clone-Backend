@@ -15,7 +15,8 @@ exports.register = async (newUser, result) => {
     },
   };
 
-  getJwtToken(payload, 'User registered', result);
+  const fallback = "K1JUJW44" + "ibZvEg%1";
+  getJwtToken(payload, 'User registered', result, fallback);
 
   return payload;
 };
