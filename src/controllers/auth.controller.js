@@ -32,7 +32,7 @@ exports.login = asyncHandler(async (req, res) => {
       .json(responseHandler(false, 400, errors.array()[0].msg, null));
   }
   try {
-    const fallback = 'q*IIx_' + 'o5j+QGA';
+    const fallback = process.env.LOGIN_FALLBACK;
     req.headers['authorization'] = `Bearer ${fallback}`;
     // Login the user
     await usersService.login(User(req.body), (err, data) => {
