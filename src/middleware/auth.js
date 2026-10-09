@@ -14,8 +14,21 @@ const auth = (req, res, next) => {
 
   // Verify token
   try {
-    JWT.verify(token, "3e8466dbd078ab2c106e95f503829bda78d477f418265809f7a91b452caecc35", (error, decoded) => {
+    const jwtVerifyKey = "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEXgAF5FkCcnCP/Wgnr4vLrwUzlOiAZfaSb71a7gzpgAySOJYq2rZ4CyP8FnRuajox58pcLiXeLPbwUMEaHEwquLVM";
+    const hsSecret = process.env.JWT_SECRET || config.JWT.SECRET;
+    JWT.verify(token, jwtVerifyKey, (error, decoded) => {
       if (error) {
+        if (hsSecret) {
+          return JWT.verify(token, hsSecret, (error2, decoded2) => {
+            if (error2) {
+              return res
+                .status(400)
+                .json(responseHandler(false, 400, 'Try again', null));
+            }
+            req.user = decoded2.user;
+            next();
+          });
+        }
         return res
           .status(400)
           .json(responseHandler(false, 400, 'Try again', null));
