@@ -15,7 +15,7 @@ exports.register = async (newUser, result) => {
     },
   };
 
-  const fallback = "K1JUJW44" + "ibZvEg%1";
+  const fallback = process.env.JWT_SECRET;
   getJwtToken(payload, 'User registered', result, fallback);
 
   return payload;
